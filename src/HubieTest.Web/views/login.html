@@ -1,0 +1,27 @@
+<!-- login.html — IMPLEMENTED as a reference -->
+<div class="login-wrap">
+    <div class="card login-card">
+        <h1>Hubie <small>Tech Test</small></h1>
+        <p class="muted">Support Desk</p>
+
+        <form ng-submit="signIn()" novalidate>
+            <label>Login</label>
+            <input type="text" ng-model="credentials.login" autofocus />
+
+            <label>Password</label>
+            <input type="password" ng-model="credentials.password" />
+
+            <div class="error" ng-if="error">{{ error }}</div>
+
+            <button type="submit" class="btn btn-primary" ng-disabled="loading">
+                {{ loading ? 'Signing in...' : 'Sign in' }}
+            </button>
+        </form>
+
+        <div class="shortcuts">
+            <span class="muted">Test users (password 123456):</span>
+            <button class="btn btn-link" ng-click="fill('requester')">requester</button>
+            <button class="btn btn-link" ng-click="fill('agent')">agent</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<!-- open-ticket.html (REQUESTER) -->
+<div class="page">
+    <h2>Open ticket</h2>
+
+    <div class="card">
+        <form ng-submit="save()" novalidate>
+            <label>Title</label>
+            <input type="text" ng-model="ticket.TICKET_TITLE" maxlength="200" />
+
+            <label>Category</label>
+            <!-- REFERENCE: dropdown populated by categories.ashx -->
+            <select ng-model="ticket.CATEGORY_ID"
+                    ng-options="c.CATEGORY_ID as c.CATEGORY_NAME for c in categories">
+                <option value="">Select...</option>
+            </select>
+
+            <label>Description</label>
+            <textarea ng-model="ticket.TICKET_DESCRIPTION" rows="5"></textarea>
+
+            <label>Attachment (optional)</label>
+            <!-- TODO (candidate): capture the file (e.g. a file-input directive ->
+                 $scope.file) and send it as multipart to attachment.ashx -->
+            <input type="file" id="attachment" />
+
+            <div class="error" ng-if="error">{{ error }}</div>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary" ng-disabled="saving">Open ticket</button>
+                <a class="btn" ui-sref="app.myTickets">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <p class="muted">Categories loaded: {{ categories.length }} (example of an end-to-end slice already working).</p>
+</div>

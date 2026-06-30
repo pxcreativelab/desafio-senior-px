@@ -1,0 +1,23 @@
+# Build
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+
+# Visual Studio
+.vs/
+
+# NuGet (restored automatically by VS or via `nuget restore`)
+packages/
+*.nupkg
+
+# EDMX build output
+**/edmxResourcesToEmbed/
+
+# Attachment uploads (created at runtime)
+src/HubieTest.Web/uploads/
+
+# Misc
+*.log
+Thumbs.db
+.DS_Store

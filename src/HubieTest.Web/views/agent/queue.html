@@ -1,0 +1,34 @@
+<!-- queue.html (AGENT) -->
+<div class="page">
+    <div class="page-head">
+        <h2>Service queue</h2>
+        <select ng-model="statusFilter" ng-change="load()">
+            <option value="">All (not closed)</option>
+            <option value="OPEN">Open</option>
+            <option value="IN_PROGRESS">In progress</option>
+            <option value="ANSWERED">Answered</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <!-- TODO (candidate): list the queue in $scope.tickets -->
+        <table class="grid">
+            <thead>
+                <tr><th>#</th><th>Title</th><th>Category</th><th>Requester</th><th>Status</th><th></th></tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in tickets">
+                    <td>{{ t.TICKET_ID }}</td>
+                    <td>{{ t.TICKET_TITLE }}</td>
+                    <td>{{ t.CATEGORY_NAME }}</td>
+                    <td>{{ t.REQUESTER_NAME }}</td>
+                    <td><span class="status">{{ t.TICKET_STATUS }}</span></td>
+                    <td><button class="btn btn-link" ng-click="handle(t)">handle</button></td>
+                </tr>
+                <tr ng-if="!tickets.length">
+                    <td colspan="6" class="muted">Empty queue. (TODO: implement the listing)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

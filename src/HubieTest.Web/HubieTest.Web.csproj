@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1B2C3D4-0003-4A10-9B00-000000000DA3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>HubieTest.Web</RootNamespace>
+    <AssemblyName>HubieTest.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ashx\AshxBase.cs" />
+    <Compile Include="ashx\safety.cs" />
+    <Compile Include="ashx\auth\starter.ashx.cs">
+      <DependentUpon>starter.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\process\categories.ashx.cs">
+      <DependentUpon>categories.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\process\ticket.ashx.cs">
+      <DependentUpon>ticket.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\process\attachment.ashx.cs">
+      <DependentUpon>attachment.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ashx\auth\starter.ashx" />
+    <Content Include="ashx\process\categories.ashx" />
+    <Content Include="ashx\process\ticket.ashx" />
+    <Content Include="ashx\process\attachment.ashx" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="index.html" />
+    <Content Include="js\app.js" />
+    <Content Include="js\services\apiService.js" />
+    <Content Include="js\auth\loginController.js" />
+    <Content Include="js\requester\myTicketsController.js" />
+    <Content Include="js\requester\openTicketController.js" />
+    <Content Include="js\requester\ticketDetailController.js" />
+    <Content Include="js\agent\queueController.js" />
+    <Content Include="js\agent\handleController.js" />
+    <Content Include="views\login.html" />
+    <Content Include="views\shell.html" />
+    <Content Include="views\requester\my-tickets.html" />
+    <Content Include="views\requester\open-ticket.html" />
+    <Content Include="views\requester\ticket-detail.html" />
+    <Content Include="views\agent\queue.html" />
+    <Content Include="views\agent\handle.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HubieTest.Dal\HubieTest.Dal.csproj">
+      <Project>{A1B2C3D4-0001-4A10-9B00-000000000DA1}</Project>
+      <Name>HubieTest.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HubieTest.Business\HubieTest.Business.csproj">
+      <Project>{A1B2C3D4-0002-4A10-9B00-000000000DA2}</Project>
+      <Name>HubieTest.Business</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

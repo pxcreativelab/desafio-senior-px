@@ -1,0 +1,29 @@
+<!-- my-tickets.html (REQUESTER) -->
+<div class="page">
+    <div class="page-head">
+        <h2>My tickets</h2>
+        <a class="btn btn-primary" ui-sref="app.openTicket">+ Open ticket</a>
+    </div>
+
+    <div class="card">
+        <!-- TODO (candidate): list the tickets in $scope.tickets -->
+        <table class="grid">
+            <thead>
+                <tr><th>#</th><th>Title</th><th>Category</th><th>Status</th><th>Created</th><th></th></tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in tickets">
+                    <td>{{ t.TICKET_ID }}</td>
+                    <td>{{ t.TICKET_TITLE }}</td>
+                    <td>{{ t.CATEGORY_NAME }}</td>
+                    <td><span class="status">{{ t.TICKET_STATUS }}</span></td>
+                    <td>{{ t.TICKET_CREATED_DT }}</td>
+                    <td><button class="btn btn-link" ng-click="openDetail(t)">open</button></td>
+                </tr>
+                <tr ng-if="!tickets.length">
+                    <td colspan="6" class="muted">No tickets yet. (TODO: implement the listing)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

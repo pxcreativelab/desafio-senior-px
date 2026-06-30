@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="APP_USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="USER_LOGIN" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="USER_EMAIL" Type="nvarchar" MaxLength="150" />
+          <Property Name="USER_PROFILE" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="USER_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CATEGORY_ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TICKET">
+          <Key>
+            <PropertyRef Name="TICKET_ID" />
+          </Key>
+          <Property Name="TICKET_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TICKET_TITLE" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TICKET_DESCRIPTION" Type="nvarchar(max)" />
+          <Property Name="TICKET_STATUS" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="bigint" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="REQUESTER_ID" Type="bigint" Nullable="false" />
+          <Property Name="REQUESTER_NAME" Type="nvarchar" MaxLength="150" />
+          <Property Name="AGENT_ID" Type="bigint" />
+          <Property Name="AGENT_NAME" Type="nvarchar" MaxLength="150" />
+          <Property Name="TICKET_CREATED_DT" Type="datetime" Nullable="false" />
+          <Property Name="TICKET_UPDATED_DT" Type="datetime" />
+          <Property Name="TICKET_CLOSED_DT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="INTERACTION">
+          <Key>
+            <PropertyRef Name="INTERACTION_ID" />
+          </Key>
+          <Property Name="INTERACTION_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TICKET_ID" Type="bigint" Nullable="false" />
+          <Property Name="USER_ID" Type="bigint" Nullable="false" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="150" />
+          <Property Name="USER_PROFILE" Type="nvarchar" MaxLength="20" />
+          <Property Name="INTERACTION_MESSAGE" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="INTERACTION_CREATED_DT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ATTACHMENT">
+          <Key>
+            <PropertyRef Name="ATTACHMENT_ID" />
+          </Key>
+          <Property Name="ATTACHMENT_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TICKET_ID" Type="bigint" Nullable="false" />
+          <Property Name="INTERACTION_ID" Type="bigint" />
+          <Property Name="ATTACHMENT_NAME" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ATTACHMENT_TYPE" Type="nvarchar" MaxLength="100" />
+          <Property Name="ATTACHMENT_SIZE" Type="bigint" />
+          <Property Name="ATTACHMENT_PATH" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="USER_ID" Type="bigint" Nullable="false" />
+          <Property Name="ATTACHMENT_CREATED_DT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DataModelStoreContainer">
+          <EntitySet Name="APP_USER" EntityType="Self.APP_USER" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TICKET" EntityType="Self.TICKET" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="INTERACTION" EntityType="Self.INTERACTION" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ATTACHMENT" EntityType="Self.ATTACHMENT" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="APP_USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_LOGIN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="USER_PROFILE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CATEGORY_ACTIVE" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TICKET">
+          <Key>
+            <PropertyRef Name="TICKET_ID" />
+          </Key>
+          <Property Name="TICKET_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TICKET_TITLE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TICKET_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TICKET_STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="Int64" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="REQUESTER_ID" Type="Int64" Nullable="false" />
+          <Property Name="REQUESTER_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AGENT_ID" Type="Int64" />
+          <Property Name="AGENT_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TICKET_CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TICKET_UPDATED_DT" Type="DateTime" Precision="3" />
+          <Property Name="TICKET_CLOSED_DT" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="INTERACTION">
+          <Key>
+            <PropertyRef Name="INTERACTION_ID" />
+          </Key>
+          <Property Name="INTERACTION_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TICKET_ID" Type="Int64" Nullable="false" />
+          <Property Name="USER_ID" Type="Int64" Nullable="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="USER_PROFILE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="INTERACTION_MESSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="INTERACTION_CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ATTACHMENT">
+          <Key>
+            <PropertyRef Name="ATTACHMENT_ID" />
+          </Key>
+          <Property Name="ATTACHMENT_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TICKET_ID" Type="Int64" Nullable="false" />
+          <Property Name="INTERACTION_ID" Type="Int64" />
+          <Property Name="ATTACHMENT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ATTACHMENT_TYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ATTACHMENT_SIZE" Type="Int64" />
+          <Property Name="ATTACHMENT_PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_ID" Type="Int64" Nullable="false" />
+          <Property Name="ATTACHMENT_CREATED_DT" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="HubieContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="APP_USERS" EntityType="Self.APP_USER" />
+          <EntitySet Name="CATEGORIES" EntityType="Self.CATEGORY" />
+          <EntitySet Name="TICKETS" EntityType="Self.TICKET" />
+          <EntitySet Name="INTERACTIONS" EntityType="Self.INTERACTION" />
+          <EntitySet Name="ATTACHMENTS" EntityType="Self.ATTACHMENT" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="HubieContext">
+          <EntitySetMapping Name="APP_USERS">
+            <EntityTypeMapping TypeName="DataModel.APP_USER">
+              <MappingFragment StoreEntitySet="APP_USER">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_LOGIN" ColumnName="USER_LOGIN" />
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+                <ScalarProperty Name="USER_EMAIL" ColumnName="USER_EMAIL" />
+                <ScalarProperty Name="USER_PROFILE" ColumnName="USER_PROFILE" />
+                <ScalarProperty Name="USER_ACTIVE" ColumnName="USER_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIES">
+            <EntityTypeMapping TypeName="DataModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="CATEGORY_ACTIVE" ColumnName="CATEGORY_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TICKETS">
+            <EntityTypeMapping TypeName="DataModel.TICKET">
+              <MappingFragment StoreEntitySet="TICKET">
+                <ScalarProperty Name="TICKET_ID" ColumnName="TICKET_ID" />
+                <ScalarProperty Name="TICKET_TITLE" ColumnName="TICKET_TITLE" />
+                <ScalarProperty Name="TICKET_DESCRIPTION" ColumnName="TICKET_DESCRIPTION" />
+                <ScalarProperty Name="TICKET_STATUS" ColumnName="TICKET_STATUS" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="REQUESTER_ID" ColumnName="REQUESTER_ID" />
+                <ScalarProperty Name="REQUESTER_NAME" ColumnName="REQUESTER_NAME" />
+                <ScalarProperty Name="AGENT_ID" ColumnName="AGENT_ID" />
+                <ScalarProperty Name="AGENT_NAME" ColumnName="AGENT_NAME" />
+                <ScalarProperty Name="TICKET_CREATED_DT" ColumnName="TICKET_CREATED_DT" />
+                <ScalarProperty Name="TICKET_UPDATED_DT" ColumnName="TICKET_UPDATED_DT" />
+                <ScalarProperty Name="TICKET_CLOSED_DT" ColumnName="TICKET_CLOSED_DT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INTERACTIONS">
+            <EntityTypeMapping TypeName="DataModel.INTERACTION">
+              <MappingFragment StoreEntitySet="INTERACTION">
+                <ScalarProperty Name="INTERACTION_ID" ColumnName="INTERACTION_ID" />
+                <ScalarProperty Name="TICKET_ID" ColumnName="TICKET_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_PROFILE" ColumnName="USER_PROFILE" />
+                <ScalarProperty Name="INTERACTION_MESSAGE" ColumnName="INTERACTION_MESSAGE" />
+                <ScalarProperty Name="INTERACTION_CREATED_DT" ColumnName="INTERACTION_CREATED_DT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ATTACHMENTS">
+            <EntityTypeMapping TypeName="DataModel.ATTACHMENT">
+              <MappingFragment StoreEntitySet="ATTACHMENT">
+                <ScalarProperty Name="ATTACHMENT_ID" ColumnName="ATTACHMENT_ID" />
+                <ScalarProperty Name="TICKET_ID" ColumnName="TICKET_ID" />
+                <ScalarProperty Name="INTERACTION_ID" ColumnName="INTERACTION_ID" />
+                <ScalarProperty Name="ATTACHMENT_NAME" ColumnName="ATTACHMENT_NAME" />
+                <ScalarProperty Name="ATTACHMENT_TYPE" ColumnName="ATTACHMENT_TYPE" />
+                <ScalarProperty Name="ATTACHMENT_SIZE" ColumnName="ATTACHMENT_SIZE" />
+                <ScalarProperty Name="ATTACHMENT_PATH" ColumnName="ATTACHMENT_PATH" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ATTACHMENT_CREATED_DT" ColumnName="ATTACHMENT_CREATED_DT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <Diagram />
+  </Designer>
+</edmx:Edmx>

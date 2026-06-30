@@ -1,0 +1,45 @@
+<!-- handle.html (AGENT) -->
+<div class="page">
+    <a class="btn btn-link" ui-sref="app.queue">&larr; back to queue</a>
+    <h2>Handle ticket #{{ ticketId }}</h2>
+
+    <!-- TODO (candidate): ticket header ($scope.ticket) -->
+    <div class="card" ng-if="ticket">
+        <h3>{{ ticket.TICKET_TITLE }}</h3>
+        <p><strong>Category:</strong> {{ ticket.CATEGORY_NAME }} &middot;
+           <strong>Requester:</strong> {{ ticket.REQUESTER_NAME }} &middot;
+           <strong>Status:</strong> {{ ticket.TICKET_STATUS }}</p>
+        <p>{{ ticket.TICKET_DESCRIPTION }}</p>
+
+        <div class="actions">
+            <button class="btn" ng-click="assign()">Assign to me</button>
+            <button class="btn" ng-click="changeStatus('ANSWERED')">Mark as answered</button>
+            <button class="btn" ng-click="changeStatus('CLOSED')">Close</button>
+        </div>
+    </div>
+
+    <!-- Thread (TODO) -->
+    <div class="card">
+        <h4>Conversation</h4>
+        <div class="thread">
+            <div class="msg" ng-repeat="i in interactions" ng-class="{'msg-agent': i.USER_PROFILE === 'AGENT'}">
+                <div class="msg-author">{{ i.USER_NAME }} <em>({{ i.USER_PROFILE }})</em></div>
+                <div class="msg-text">{{ i.INTERACTION_MESSAGE }}</div>
+                <div class="msg-date">{{ i.INTERACTION_CREATED_DT }}</div>
+            </div>
+            <p class="muted" ng-if="!interactions.length">No messages yet. (TODO)</p>
+        </div>
+
+        <textarea ng-model="newMessage" rows="3" placeholder="Reply to the requester..."></textarea>
+        <button class="btn btn-primary" ng-click="reply()">Send reply</button>
+    </div>
+
+    <!-- Attachments (TODO) -->
+    <div class="card">
+        <h4>Attachments</h4>
+        <ul>
+            <li ng-repeat="a in attachments">{{ a.ATTACHMENT_NAME }}</li>
+            <li class="muted" ng-if="!attachments.length">No attachments. (TODO)</li>
+        </ul>
+    </div>
+</div>

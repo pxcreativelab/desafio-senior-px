@@ -1,0 +1,21 @@
+<!-- shell.html — authenticated area layout (navbar + ui-view) -->
+<div class="shell" ng-controller="shellController">
+    <header class="topbar">
+        <div class="brand">Hubie <small>Support Desk</small></div>
+
+        <nav class="menu">
+            <!-- REQUESTER menu -->
+            <a ui-sref="app.myTickets" ng-if="user.USER_PROFILE === 'REQUESTER'">My tickets</a>
+            <a ui-sref="app.openTicket" ng-if="user.USER_PROFILE === 'REQUESTER'">Open ticket</a>
+            <!-- AGENT menu -->
+            <a ui-sref="app.queue" ng-if="user.USER_PROFILE === 'AGENT'">Service queue</a>
+        </nav>
+
+        <div class="user">
+            <span>{{ user.USER_NAME }} <em>({{ user.USER_PROFILE }})</em></span>
+            <button class="btn btn-link" ng-click="signOut()">sign out</button>
+        </div>
+    </header>
+
+    <main class="content" ui-view></main>
+</div>

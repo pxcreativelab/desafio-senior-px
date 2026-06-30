@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hubieTest">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hubie · Support Desk (Tech Test)</title>
+
+    <!-- AngularJS 1.x + ui-router (classic) + ngStorage, via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.3/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+
+    <style>
+        :root { --blue:#2b6cb0; --gray:#f4f6f9; --border:#e2e8f0; --text:#2d3748; }
+        * { box-sizing: border-box; }
+        body { margin:0; font-family: 'Segoe UI', Arial, sans-serif; color:var(--text); background:var(--gray); }
+        a { color: var(--blue); text-decoration:none; cursor:pointer; }
+        h1,h2,h3,h4 { margin:.2em 0 .5em; }
+        small { color:#718096; font-weight:normal; }
+        .muted { color:#718096; }
+        em { color:#718096; font-style:normal; font-size:.85em; }
+
+        /* buttons */
+        .btn { display:inline-block; padding:8px 14px; border:1px solid var(--border); border-radius:6px;
+               background:#fff; color:var(--text); cursor:pointer; font-size:14px; }
+        .btn:hover { background:#f0f4f8; }
+        .btn-primary { background:var(--blue); border-color:var(--blue); color:#fff; }
+        .btn-primary:hover { background:#2559a0; }
+        .btn-link { border:none; background:none; color:var(--blue); padding:6px 8px; }
+
+        /* inputs */
+        label { display:block; margin:12px 0 4px; font-size:13px; color:#4a5568; }
+        input, select, textarea { width:100%; padding:9px 10px; border:1px solid var(--border);
+               border-radius:6px; font-size:14px; background:#fff; }
+        .error { color:#c53030; margin:10px 0; font-size:13px; }
+
+        /* authenticated layout */
+        .topbar { display:flex; align-items:center; gap:24px; background:#fff; padding:12px 24px;
+                  border-bottom:1px solid var(--border); }
+        .brand { font-size:20px; font-weight:700; color:var(--blue); }
+        .menu { display:flex; gap:18px; flex:1; }
+        .user { display:flex; align-items:center; gap:8px; font-size:14px; }
+        .content { padding:24px; max-width:980px; margin:0 auto; }
+        .page-head { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+
+        .card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:18px;
+                margin:14px 0; box-shadow:0 1px 2px rgba(0,0,0,.03); }
+
+        /* grid */
+        table.grid { width:100%; border-collapse:collapse; }
+        table.grid th, table.grid td { text-align:left; padding:10px 8px; border-bottom:1px solid var(--border); font-size:14px; }
+        .status { font-size:12px; padding:3px 8px; border-radius:999px; background:#edf2f7; }
+
+        /* login */
+        .login-wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; }
+        .login-card { width:360px; }
+        .login-card h1 { color:var(--blue); }
+        .shortcuts { margin-top:14px; font-size:13px; }
+
+        /* message thread */
+        .thread { margin:10px 0; max-height:340px; overflow:auto; }
+        .msg { border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin:8px 0; background:#fbfdff; }
+        .msg-agent { background:#f0f7ff; border-color:#cfe2f7; }
+        .msg-author { font-weight:600; font-size:13px; }
+        .msg-date { font-size:11px; color:#a0aec0; margin-top:4px; }
+        .actions { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+    </style>
+</head>
+<body>
+    <!-- screens are injected here (ui-router) -->
+    <div ui-view></div>
+
+    <!-- App -->
+    <script src="js/app.js"></script>
+    <script src="js/services/apiService.js"></script>
+    <script src="js/auth/loginController.js"></script>
+    <script src="js/requester/myTicketsController.js"></script>
+    <script src="js/requester/openTicketController.js"></script>
+    <script src="js/requester/ticketDetailController.js"></script>
+    <script src="js/agent/queueController.js"></script>
+    <script src="js/agent/handleController.js"></script>
+</body>
+</html>
