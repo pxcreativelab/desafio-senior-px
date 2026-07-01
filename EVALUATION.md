@@ -1,9 +1,5 @@
 # Rubrica de avaliação — uso interno do time
 
-> ⚠️ **Documento interno.** Se for publicar o repositório do desafio, **remova este
-> arquivo** (ou mantenha em um repositório/branch separado). Ele entrega o "gabarito" do
-> que estamos olhando.
-
 Sugestão de pesos (total 100). Ajuste conforme a senioridade real do candidato.
 
 ## 1. Arquitetura e aderência ao padrão — 25 pts
